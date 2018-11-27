@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+		
+    <import resource="spring-dubbo-producer.xml"/>
+    <import resource="spring-dubbo-customer.xml"/>
+    <!--<import resource="spring-redis.xml"/>-->
+	
+	<beans profile="default">
+    	<bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	  		<property name="fileEncoding" value="utf-8"/>
+	  		<property name="location" value="classpath:ai-security-config-test.properties"/>
+		</bean>
+    </beans>
+    
+    <beans profile="test">
+    	<bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	  		<property name="fileEncoding" value="utf-8"/>
+	  		<property name="location" value="classpath:ai-security-config-test.properties"/>
+		</bean>
+    </beans>
+    
+    <beans profile="onlinetest">
+		<bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="fileEncoding" value="utf-8"/>
+			<property name="location" value="classpath:ai-security-config-online-test.properties"/>
+		</bean>
+    </beans>
+    
+     <beans profile="online">
+    	<bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	  		<property name="fileEncoding" value="utf-8"/>
+	  		<property name="location" value="classpath:ai-security-config-online.properties"/>
+		</bean>
+    </beans>
+</beans>

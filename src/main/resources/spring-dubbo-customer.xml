@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans          
+    http://www.springframework.org/schema/beans/spring-beans.xsd          
+    http://code.alibabatech.com/schema/dubbo          
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd"> 
+
+	<!-- =============================消费者配置========================== -->
+	<dubbo:registry protocol="zookeeper" address="172.16.4.114:2181" check="false"/>
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="20883"/>
+
+    <!--<dubbo:reference id="cameraHistoryInfoService" interface="com.jjswlkj.aisecurity.service.ICameraHistoryInfoService" check="false" />-->
+	<!-- =============================接口生产配置========================== -->
+	<!-- 详细配置见 http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%3Cdubbo%3Areference%2F%3E -->
+	<!-- 当applicationContext.xml中没有配置provider时，将dubbo:application标签打开 -->
+	<dubbo:application name="jjs-wlkj-ai-security" organization="jjs" owner="ai-security"/>
+	<!--<dubbo:registry protocol="zookeeper" address="${zookeeper.url}" check="false"/>&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
+
+	<dubbo:reference id="purviewService" interface="com.leyoujia.purview.api.IPurviewService" check="false" />
+
+	<dubbo:reference id="iCwService" interface="com.erp.remote.main.dubbo.service.ICwService" check="false"/>
+</beans>
